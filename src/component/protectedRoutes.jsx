@@ -9,6 +9,7 @@ const ProtectedRoutes = ({ children }) => {
     let response = null;
     try {
       response = await getLoggedUser();
+      // console.log(response);
       if (response.success) {
         setUser(response.data);
       } else {
@@ -25,7 +26,7 @@ const ProtectedRoutes = ({ children }) => {
       navigate("/login");
     }
   }, []);
-  console.log(user);
+
   return (
     <div>
       <p>Name:{user?.firstName + " " + user?.lastName}</p>
