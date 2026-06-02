@@ -6,8 +6,11 @@ import "../index.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalVariableContext } from "../App";
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../redux/loaderSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -23,11 +26,13 @@ const Login = () => {
     };
 
     try {
+      dispatch(showLoader());
       let result = await axios({
         url: `${url}/api/auth/login`,
         method: "POST",
         data: data,
       });
+      dispatch(hideLoader());
       let token = result.data.token;
       localStorage.setItem("token", token);
       global.setToken(token);
@@ -40,6 +45,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
     } catch (error) {
+      dispatch(hideLoader());
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   };

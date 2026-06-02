@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLoggedUser } from "../apiCall/users";
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../redux/loaderSlice";
 
 const ProtectedRoutes = ({ children }) => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const getLoggedInUser = async () => {
     let response = null;
     try {
+      dispatch(showLoader());
       response = await getLoggedUser();
-      // console.log(response);
+      dispatch(hideLoader());
+      //console.log(response);
       if (response.success) {
         setUser(response.data);
       } else {
         navigate("/login");
       }
     } catch (error) {
+      dispatch(hideLoader());
       navigate("/login");
     }
   };
@@ -29,7 +35,9 @@ const ProtectedRoutes = ({ children }) => {
 
   return (
     <div>
-      <p>Name:{user?.firstName + " " + user?.lastName}</p>
+      <p>Name: {user ? `${user.firstName} ${user.lastName}` : ""}</p>
+      <p>Email:{user?.email}</p>
+      <br />
       {children}
     </div>
   );

@@ -5,8 +5,11 @@ import { url } from "../config";
 import "../index.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { hideLoader, showLoader } from "../redux/loaderSlice";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,11 +35,13 @@ const SignUp = () => {
     };
 
     try {
+      dispatch(showLoader());
       let result = await axios({
         url: `${url}/api/auth/signup`,
         method: "POST",
         data: data,
       });
+      dispatch(hideLoader());
       console.log(result);
       toast.success("A verification link has been sent to your email.");
 
@@ -47,6 +52,7 @@ const SignUp = () => {
       setProfilePic("");
       setIsVerified(true);
     } catch (error) {
+      dispatch(hideLoader());
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   };

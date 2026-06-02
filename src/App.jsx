@@ -5,14 +5,19 @@ import SignUp from "./component/signup";
 import VerifyEmail from "./component/verifyEmail";
 import { createContext, useState } from "react";
 import ProtectedRoutes from "./component/protectedRoutes";
+import Loader from "./component/loader";
+import { useSelector } from "react-redux";
+
 // import ProtectedRoutes from "./component/ProtectedRoutes";
 export const GlobalVariableContext = createContext();
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const { loader } = useSelector((state) => state.loaderReducer);
 
   return (
     <div>
+      {loader && <Loader />}
       <GlobalVariableContext.Provider
         value={{ token: token, setToken: setToken }}
       >

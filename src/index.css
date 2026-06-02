@@ -92,170 +92,224 @@
 
    */
 
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .signup-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    /* Background Image */
-    background-image: url("/image/chat-app.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  
-    font-family: Arial, Helvetica, sans-serif;
-    position: relative;
-  }
-  
-  /* Dark overlay */
-  .signup-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-  
-  .signup-form {
-    position: relative;
-    z-index: 1;
-  
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(10px);
-  
-    padding: 40px;
-    width: 400px;
-    border-radius: 18px;
-  
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .signup-form h2 {
-    text-align: center;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 30px;
-  }
-  
-  .subtitle {
-    text-align: center;
-    color: #ddd;
-    margin-bottom: 25px;
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
-  }
-  
-  .input-group label {
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: white;
-  }
-  
-  .input-group input {
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-  
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-  
-    outline: none;
-  }
-  
-  .input-group input::placeholder {
-    color: #ddd;
-  }
-  
-  .input-group input:focus {
-    border: 1px solid #4facfe;
-    box-shadow: 0px 0px 8px rgba(79, 172, 254, 0.6);
-  }
-  
-  .signup-btn {
-    width: 100%;
-    padding: 12px;
-  
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-  
-    color: white;
-    border: none;
-    border-radius: 8px;
-  
-    font-size: 16px;
-    font-weight: bold;
-  
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .signup-btn:hover {
-    transform: scale(1.03);
-  }
-  
-  .login-link {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .login-link p {
-    color: white;
-  }
-  
-  .login-link a {
-    text-decoration: none;
-    color: #4facfe;
-    font-weight: bold;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .login-btn {
-    width: 100%;
-    padding: 12px;
-  
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-  
-    color: white;
-    border: none;
-    border-radius: 8px;
-  
-    font-size: 16px;
-    font-weight: bold;
-  
-    cursor: pointer;
-    transition: 0.3s;
-  }
+.signup-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  /* password eye icon */
-  .password-input {
-    position: relative;
+  /* Background Image */
+  background-image: url("/image/chat-app.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+/* Dark overlay */
+.signup-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.signup-form {
+  position: relative;
+  z-index: 1;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  padding: 40px;
+  width: 400px;
+  border-radius: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 30px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: white;
+}
+
+.input-group input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #ddd;
+}
+
+.input-group input:focus {
+  border: 1px solid #4facfe;
+  box-shadow: 0px 0px 8px rgba(79, 172, 254, 0.6);
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+
+  color: white;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup-btn:hover {
+  transform: scale(1.03);
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link p {
+  color: white;
+}
+
+.login-link a {
+  text-decoration: none;
+  color: #4facfe;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+
+  color: white;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* password eye icon */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-input span {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/********************************************************************
+***************************CSS FOR LOADIER**************************
+********************************************************************/
+
+.loader-overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(231, 76, 60, 0.7); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loader-spinner,
+.loader-spinner:after {
+  box-sizing: border-box;
+}
+.loader-spinner {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loader-spinner:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid white;
+  border-color: white transparent white transparent;
+  animation: loader-spinner 1.2s infinite;
+}
+@keyframes loader-spinner {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
-  
-  .password-input input {
-    width: 100%;
-    padding-right: 40px;
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  
-  .password-input span {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
+  100% {
+    transform: rotate(1800deg);
   }
-  
+}
