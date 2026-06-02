@@ -22,10 +22,6 @@ const Login = () => {
       password,
     };
 
-    data = {
-      ...data,
-    };
-
     try {
       let result = await axios({
         url: `${url}/api/auth/login`,

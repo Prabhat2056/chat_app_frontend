@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useState } from "react";
@@ -7,7 +5,6 @@ import { url } from "../config";
 import "../index.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -36,12 +33,11 @@ const SignUp = () => {
 
     try {
       let result = await axios({
-    
         url: `${url}/api/auth/signup`,
         method: "POST",
         data: data,
       });
-       console.log(result);
+      console.log(result);
       toast.success("A verification link has been sent to your email.");
 
       setFirstName("");
@@ -93,7 +89,7 @@ const SignUp = () => {
           />
         </div>
 
-     {/*    <div className="input-group">
+        {/*    <div className="input-group">
           <label>Password </label>
           <input
             type="password"
@@ -104,22 +100,22 @@ const SignUp = () => {
           />
         </div> */}
 
-<div className="input-group">
-  <label>Password</label>
+        <div className="input-group">
+          <label>Password</label>
 
-  <div className="password-input">
-    <input
-      type={showPassword ? "text" : "password"}
-      placeholder="Enter password"
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-    />
+          <div className="password-input">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-    <span onClick={() => setShowPassword(!showPassword)}>
-      {showPassword ? <FaEyeSlash /> : <FaEye />}
-    </span>
-  </div>
-</div>
+            <span onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+        </div>
 
         <button type="submit" className="signup-btn">
           Sign Up
