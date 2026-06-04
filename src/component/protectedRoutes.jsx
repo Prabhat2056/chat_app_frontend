@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLoggedUser } from "../apiCall/users";
 import { useDispatch } from "react-redux";
-import { hideLoader, showLoader } from "../redux/loaderSlice";
+import { hideLoader, showLoader } from "../features/loaderSlice";
 
 const ProtectedRoutes = ({ children }) => {
   const dispatch = useDispatch();
@@ -35,9 +35,7 @@ const ProtectedRoutes = ({ children }) => {
 
   return (
     <div>
-      <p>Name: {user ? `${user.firstName} ${user.lastName}` : ""}</p>
-      <p>Email:{user?.email}</p>
-      <br />
+      
       {children}
     </div>
   );

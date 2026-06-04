@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalVariableContext } from "../App";
 import { useDispatch } from "react-redux";
-import { hideLoader, showLoader } from "../redux/loaderSlice";
+import { hideLoader, showLoader } from "../features/loaderSlice";
 
 const Login = () => {
   const dispatch = useDispatch();

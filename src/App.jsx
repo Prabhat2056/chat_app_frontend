@@ -13,7 +13,7 @@ export const GlobalVariableContext = createContext();
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const { loader } = useSelector((state) => state.loaderReducer);
+  const { loader } = useSelector((state) => state.loader);
 
   return (
     <div>

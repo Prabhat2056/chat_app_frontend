@@ -1,8 +1,13 @@
-
-const home = () => {
+import Header from "./header"
+const Home = () => {
   return (
-    <div>This is the home page</div>
+    <div className="home-page">
+      <Header></Header>
+      <div className="main-content">
+
+      </div>
+    </div>  
   )
 }
 
-export default home
+export default Home

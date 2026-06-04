@@ -6,7 +6,7 @@ import "../index.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { hideLoader, showLoader } from "../redux/loaderSlice";
+import { hideLoader, showLoader } from "../features/loaderSlice";
 
 const SignUp = () => {
   const dispatch = useDispatch();
