@@ -264,15 +264,20 @@
 ********************************************************************/
 
 .loader-overlay {
-  position: fixed; /* Sit on top of the page content */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  position: fixed;
+  /* Sit on top of the page content */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(231, 76, 60, 0.7); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  background-color: rgba(231, 76, 60, 0.7);
+  /* Black background with opacity */
+  z-index: 2;
+  /* Specify a stack order in case you're using a different order for other elements */
   align-items: center;
   display: flex;
   justify-content: center;
@@ -282,12 +287,14 @@
 .loader-spinner:after {
   box-sizing: border-box;
 }
+
 .loader-spinner {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
+
 .loader-spinner:after {
   content: " ";
   display: block;
@@ -300,15 +307,18 @@
   border-color: white transparent white transparent;
   animation: loader-spinner 1.2s infinite;
 }
+
 @keyframes loader-spinner {
   0% {
     transform: rotate(0);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
+
   50% {
     transform: rotate(900deg);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
+
   100% {
     transform: rotate(1800deg);
   }
@@ -317,25 +327,25 @@
 /*******************************************************
 ********CSS FOR HOME PAGE*******************************
 ********************************************************/
-.home-page{
+.home-page {
   background-color: #fdedec;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.main-content{
+.main-content {
   display: flex;
   width: 90%;
   margin: 10px auto;
   padding: 10px 10px;
-  flex:1;
+  flex: 1;
 }
 
 /*******************************************************
 ********CSS FOR HEADER COMPONENT************************
 ********************************************************/
-.app-header{
+.app-header {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -344,7 +354,7 @@
   border-bottom: #bbb 1px solid;
 }
 
-.app-logo{
+.app-logo {
   display: flex;
   flex-wrap: nowrap;
   color: #28282B;
@@ -352,15 +362,15 @@
   font-weight: bold;
 }
 
-i{
+i {
   margin: 5px 10px;
 }
 
-.app-user-profile{
+.app-user-profile {
   display: flex;
 }
 
-.logged-user-name{
+.logged-user-name {
   color: #28282B;
   font-weight: bold;
   padding-top: 10px;
@@ -368,7 +378,7 @@ i{
   margin-left: 15px;
 }
 
-.logged-user-profile-pic{
+.logged-user-profile-pic {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -380,4 +390,12 @@ i{
   vertical-align: middle;
   line-height: 40px;
   cursor: pointer;
+}
+
+/*******************************************************
+********            APP SIDE BAR************************
+********************************************************/
+.app-sidebar {
+  width: 30%;
+  padding: 0px, 20px;
 }
