@@ -5,14 +5,14 @@ const Header = () => {
   const { user } = useSelector((state) => state.user); // ← Fixed this line
   console.log(user);
     const getFullName =()=>{
-      let fname = user.firstName.toUpperCase();
-      let lname= user.lastName.toUpperCase();
+      let fname = user?.firstName.toUpperCase();
+      let lname= user?.lastName.toUpperCase();
       return fname + ' ' + lname;
       
     }
     const getInitials= () =>{
-      let f = user.firstName.toUpperCase()[0];
-      let l = user.lastName.toUpperCase()[0];
+      let f = user?.firstName.toUpperCase()[0];
+      let l = user?.lastName.toUpperCase()[0];
       return f + l;
     }
   return (
