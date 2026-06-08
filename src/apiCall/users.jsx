@@ -9,3 +9,12 @@ export const getLoggedUser = async () => {
     return error;
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+    const response = await axiosInstance.get(`${url}/api/user/get-all-user`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};

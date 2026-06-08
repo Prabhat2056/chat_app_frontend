@@ -1,8 +1,6 @@
-
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLoggedUser } from "../apiCall/users";
+import { getAllUsers, getLoggedUser } from "../apiCall/users";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoader, showLoader } from "../features/loaderSlice";
 import { setUser } from "../features/userSlice";
@@ -21,24 +19,40 @@ const ProtectedRoutes = ({ children }) => {
       console.log(response);
       if (response.success) {
         dispatch(setUser(response.data));
-  console.log(user);
-
+        console.log(user);
       } else {
         navigate("/login");
-  console.log(user);
-
+        console.log(user);
       }
     } catch (error) {
       dispatch(hideLoader());
       navigate("/login");
-  console.log(user);
-
     }
   };
-  
+
+  const getAllUser = async () => {
+    let response = null;
+    try {
+      dispatch(showLoader());
+      response = await getAllUsers();
+      dispatch(hideLoader());
+      if (response.success) {
+        dispatch(setUser(response.data));
+        console.log(user);
+      } else {
+        navigate("/login");
+        console.log(user);
+      }
+    } catch (error) {
+      dispatch(hideLoader());
+      navigate("/login");
+    }
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getLoggedInUser();
+      // getAllUser();
     } else {
       navigate("/login");
     }
