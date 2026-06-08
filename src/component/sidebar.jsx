@@ -1,11 +1,11 @@
+import Search from "./Search";
 
 const SideBar = () => {
   return (
     <div className="app-sidebar">
-        {/* search list */}
-        {/* user list */}
+      <Search></Search>
     </div>
-  )
-}
+  );
+};
 
-export default SideBar 
+export default SideBar;
