@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllUsers, getLoggedUser } from "../apiCall/users";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoader, showLoader } from "../features/loaderSlice";
-import { setUser } from "../features/userSlice";
+import { setAllUsers, setUser } from "../features/userSlice";
 
 const ProtectedRoutes = ({ children }) => {
   const dispatch = useDispatch();
@@ -30,14 +30,14 @@ const ProtectedRoutes = ({ children }) => {
     }
   };
 
-  const getAllUser = async () => {
+  const getAllUsersFromDb = async () => {
     let response = null;
     try {
       dispatch(showLoader());
       response = await getAllUsers();
       dispatch(hideLoader());
       if (response.success) {
-        dispatch(setUser(response.data));
+        dispatch(setAllUsers(response.data));
         console.log(user);
       } else {
         navigate("/login");
@@ -52,7 +52,7 @@ const ProtectedRoutes = ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getLoggedInUser();
-      // getAllUser();
+      getAllUsersFromDb();
     } else {
       navigate("/login");
     }

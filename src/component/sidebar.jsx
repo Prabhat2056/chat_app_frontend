@@ -1,9 +1,13 @@
+import { useState } from "react";
 import Search from "./Search";
+import UsersList from "./userList";
 
 const SideBar = () => {
+  const [searchKey, setSearchKey] = useState("");
   return (
     <div className="app-sidebar">
-      <Search></Search>
+      <Search searchKey={searchKey} setSearchKey={setSearchKey}></Search>
+      <UsersList seaarchKey={searchKey}></UsersList>
     </div>
   );
 };
