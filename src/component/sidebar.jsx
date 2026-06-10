@@ -7,9 +7,10 @@ const SideBar = () => {
   return (
     <div className="app-sidebar">
       <Search searchKey={searchKey} setSearchKey={setSearchKey}></Search>
-      <UsersList seaarchKey={searchKey}></UsersList>
+      <UsersList searchKey={searchKey}></UsersList>
     </div>
   );
 };
 
 export default SideBar;
+//what is happening
