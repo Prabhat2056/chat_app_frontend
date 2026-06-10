@@ -5,14 +5,9 @@ function UsersList({ searchKey }) {
 
   return (
     allUsers
-      // .filter((user) => {
-      //   return (
-      //     user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
-      //     user.lastName.toLowerCase().includes(searchKey.toLowerCase())
-      //   );
-      // })
       .map((user) => {
         console.log(allUsers);
+        //filter
         return (
           <div class="user-search-filter">
             <div class="filtered-user">
