@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 
 function UsersList({ searchKey }) {
-  const { allUsers } = useSelector((state) => state.user);
+  const { allUsers, allChats } = useSelector((state) => state.user);
 
   console.log("searchKey:", searchKey);
   console.log("allUsers:", allUsers);
+  console.log("allChats:", allChats);
 
   return allUsers
     .filter((user) => {
@@ -12,7 +13,7 @@ function UsersList({ searchKey }) {
         (user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
           user.lastName.toLowerCase().includes(searchKey.toLowerCase())) &&
         searchKey
-      );
+      ) || (allChats.some(chat => chat.members.includes(user.id)))
     })
     .map((user) => {
       return (
@@ -27,7 +28,7 @@ function UsersList({ searchKey }) {
                 />
               )}
               {!user.profilePic && 
-                <div className="user-default-profile-pic" key={user._id}>
+                <div className="user-default-profile-pic" key={user.id}>
                   {user.firstName.charAt(0).toUpperCase() +
                     user.lastName.charAt(0).toUpperCase()}
                 </div>
@@ -37,9 +38,16 @@ function UsersList({ searchKey }) {
                   {user.firstName + " " + user.lastName}
                 </div>
                 <div className="user-display-email">{user.email}</div>
-                <div className="user-start-chat">
+
+                {!allChats.find((chat) => chat.members.includes(user.id)) && (
+                  <div className="user-start-chat">
+                    <button className="user-start-chat-btn">Start Chat</button>
+                  </div>
+                )}
+
+                {/* <div className="user-start-chat">
                   <button className="user-start-chat-btn">Start Chat</button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
