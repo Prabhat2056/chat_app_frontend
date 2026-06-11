@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { getAllUsers, getLoggedUser } from "../apiCall/users";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoader, showLoader } from "../features/loaderSlice";
-import { setAllUsers, setUser } from "../features/userSlice";
+import { setAllChats, setAllUsers, setUser } from "../features/userSlice";
+import { getAllChats } from "../apiCall/chat";
 
 const ProtectedRoutes = ({ children }) => {
   const dispatch = useDispatch();
@@ -16,13 +17,10 @@ const ProtectedRoutes = ({ children }) => {
       dispatch(showLoader());
       response = await getLoggedUser();
       dispatch(hideLoader());
-      console.log(response);
       if (response.success) {
         dispatch(setUser(response.data));
-        console.log(user);
       } else {
         navigate("/login");
-        console.log(user);
       }
     } catch (error) {
       dispatch(hideLoader());
@@ -38,10 +36,8 @@ const ProtectedRoutes = ({ children }) => {
       dispatch(hideLoader());
       if (response.success) {
         dispatch(setAllUsers(response.data));
-        console.log(user);
       } else {
         navigate("/login");
-        console.log(user);
       }
     } catch (error) {
       dispatch(hideLoader());
@@ -49,10 +45,23 @@ const ProtectedRoutes = ({ children }) => {
     }
   };
 
+  const getCurrentUserChats = async () => {
+    try {
+      const response = await getAllChats();
+      console.log(response);
+      if (response.success) {
+        dispatch(setAllChats(response.data));
+      }
+    } catch (error) {
+      navigate("login");
+    }
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getLoggedInUser();
       getAllUsersFromDb();
+      getCurrentUserChats();
     } else {
       navigate("/login");
     }

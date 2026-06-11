@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = () => {
-  const [searchKey, setSearchKey] = useState("");
-
+const Search = ({ searchKey, setSearchKey }) => {
   return (
     <div className="user-search-area">
       <input

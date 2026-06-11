@@ -3,39 +3,49 @@ import { useSelector } from "react-redux";
 function UsersList({ searchKey }) {
   const { allUsers } = useSelector((state) => state.user);
 
-  return (
-    allUsers
-      .map((user) => {
-        console.log(allUsers);
-        //filter
-        return (
-          <div class="user-search-filter">
-            <div class="filtered-user">
-              <div class="filter-user-display">
-                {/* <img
-            src={user.profilePic}
-            alt="Profile Pic"
-            class="user-profile-image"
-          /> */}
-                <div class="user-default-profile-pic">
+  console.log("searchKey:", searchKey);
+  console.log("allUsers:", allUsers);
+
+  return allUsers
+    .filter((user) => {
+      return (
+        (user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(searchKey.toLowerCase())) &&
+        searchKey
+      );
+    })
+    .map((user) => {
+      return (
+        <div className="user-search-filter">
+          <div className="filtered-user">
+            <div className="filter-user-display">
+              {user.profilePic && (
+                <img
+                  src={user.profilePic}
+                  alt="Profile Pic"
+                  className="user-profile-image"
+                />
+              )}
+              {!user.profilePic && 
+                <div className="user-default-profile-pic" key={user._id}>
                   {user.firstName.charAt(0).toUpperCase() +
                     user.lastName.charAt(0).toUpperCase()}
                 </div>
-                <div class="filter-user-details">
-                  <div class="user-display-name">
-                    {user.firstName + " " + user.lastName}
-                  </div>
-                  <div class="user-display-email">{user.email}</div>
-                  <div class="user-start-chat">
-                    <button class="user-start-chat-btn">Start Chat</button>
-                  </div>
+              }
+              <div className="filter-user-details">
+                <div className="user-display-name">
+                  {user.firstName + " " + user.lastName}
+                </div>
+                <div className="user-display-email">{user.email}</div>
+                <div className="user-start-chat">
+                  <button className="user-start-chat-btn">Start Chat</button>
                 </div>
               </div>
             </div>
           </div>
-        );
-      })
-  );
+        </div>
+      );
+    });
 }
 
 export default UsersList;
