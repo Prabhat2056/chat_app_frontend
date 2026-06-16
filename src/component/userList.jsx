@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 
 function UsersList({ searchKey }) {
-  const { allUsers } = useSelector((state) => state.user);
+  const { allUsers, allChats } = useSelector((state) => state.user);
 
-  console.log("searchKey:", searchKey);
-  console.log("allUsers:", allUsers);
+  // console.log("searchKey:", searchKey);
+  // console.log("allUsers:", allUsers);
 
   return allUsers
     .filter((user) => {
@@ -26,20 +26,22 @@ function UsersList({ searchKey }) {
                   className="user-profile-image"
                 />
               )}
-              {!user.profilePic && 
-                <div className="user-default-profile-pic" key={user._id}>
+              {!user.profilePic && (
+                <div className="user-default-profile-pic" key={user.id}>
                   {user.firstName.charAt(0).toUpperCase() +
                     user.lastName.charAt(0).toUpperCase()}
                 </div>
-              }
+              )}
               <div className="filter-user-details">
                 <div className="user-display-name">
                   {user.firstName + " " + user.lastName}
                 </div>
                 <div className="user-display-email">{user.email}</div>
-                <div className="user-start-chat">
-                  <button className="user-start-chat-btn">Start Chat</button>
-                </div>
+                {!allChats.find((chat) => chat.members.includes(user.id)) && (
+                  <div className="user-start-chat">
+                    <button className="user-start-chat-btn">Start Chat</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

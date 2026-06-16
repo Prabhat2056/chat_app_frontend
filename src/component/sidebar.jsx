@@ -13,4 +13,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-//what is happening
