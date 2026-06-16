@@ -48,7 +48,6 @@ const ProtectedRoutes = ({ children }) => {
   const getCurrentUserChats = async () => {
     try {
       const response = await getAllChats();
-      console.log(response);
       if (response.success) {
         dispatch(setAllChats(response.data));
       }

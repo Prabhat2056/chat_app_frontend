@@ -1,15 +1,16 @@
-import Header from "./header"
-import SideBar from "./sidebar"
+import ChatArea from "./chat";
+import Header from "./header";
+import SideBar from "./sidebar";
 const Home = () => {
   return (
     <div className="home-page">
       <Header></Header>
       <div className="main-content">
         <SideBar></SideBar>
-
+        <ChatArea></ChatArea>
       </div>
-    </div>  
-  )
-}
+    </div>
+  );
+};
 
-export default Home
+export default Home;
