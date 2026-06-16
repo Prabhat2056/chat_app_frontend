@@ -7,12 +7,12 @@ function ChatArea() {
     return <div>Select a chat</div>;
   }
 
-  const selectedUser = selectedChat.members?.find((u) => u.id !== user?.id);
+  const selectedUser = selectedChat.members.find((u) => u.id !== user.id);
 
   return (
     <div className="app-chat-area">
       <div className="app-chat-area-header">
-        {selectedUser?.firstName} {selectedUser?.lastName}
+        {selectedUser.firstName} {selectedUser.lastName}
       </div>
 
       <div>CHAT AREA</div>
