@@ -1,42 +1,50 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { createNewChat } from "./../apiCall/chat";
-import { hideLoader, showLoader } from "./../features/loaderSlice";
-import { setAllChats, setSelectedChat } from "./../features/userSlice";
+import { createNewChat } from "../apiCall/chat";
+import { hideLoader, showLoader } from "../features/loaderSlice";
+import { setAllChats, setSelectedChat } from "../features/userSlice";
 
 function UsersList({ searchKey }) {
   const {
-    allUsers,
-    allChats,
+    allUsers = [],
+    allChats = [],
     user: currentUser,
   } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const startNewChat = async (searchedUserId) => {
-    let response = null;
     try {
       dispatch(showLoader());
-      response = await createNewChat([currentUser.id, searchedUserId]);
+
+      const response = await createNewChat([currentUser.id, searchedUserId]);
+
       dispatch(hideLoader());
 
-      if (response.success) {
+      if (response?.success) {
         toast.success(response.message);
+
         const newChat = response.data;
-        const updatedChat = [...allChats, newChat];
-        dispatch(setAllChats(updatedChat));
+
+        dispatch(setAllChats([...allChats, newChat]));
         dispatch(setSelectedChat(newChat));
+      } else {
+        toast.error(response?.message || "Failed to create chat");
       }
     } catch (error) {
-      toast.error(response.message);
       dispatch(hideLoader());
+      toast.error("Failed to create chat");
+      console.error(error);
     }
   };
+
   const openChat = (selectedUserId) => {
     const chat = allChats.find(
       (chat) =>
-        chat.members.map((m) => m.id).includes(currentUser.id) &&
-        chat.members.map((m) => m.id).includes(selectedUserId),
+        chat.members?.includes(currentUser.id) &&
+        chat.members?.includes(selectedUserId),
     );
+
     if (chat) {
       dispatch(setSelectedChat(chat));
     }
@@ -44,48 +52,60 @@ function UsersList({ searchKey }) {
 
   return allUsers
     .filter((user) => {
-      return (
-        ((user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
-          user.lastName.toLowerCase().includes(searchKey.toLowerCase())) &&
-          searchKey) ||
-        allChats.some((chat) => chat.members.map((m) => m.id).includes(user.id))
-      );
+      const matchesSearch =
+        searchKey &&
+        (user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(searchKey.toLowerCase()));
+
+      const hasChat = allChats.some((chat) => chat.members?.includes(user.id));
+
+      return matchesSearch || hasChat;
     })
     .map((user) => {
+      const hasExistingChat = allChats.some((chat) =>
+        chat.members?.includes(user.id),
+      );
+
       return (
         <div
           className="user-search-filter"
-          onClick={() => openChat(user.id)}
           key={user.id}
+          onClick={() => openChat(user.id)}
         >
           <div className="filtered-user">
             <div className="filter-user-display">
-              {user.profilePic && (
+              {user.profilePic ? (
                 <img
                   src={user.profilePic}
-                  alt="Profile Pic"
+                  alt="Profile"
                   className="user-profile-image"
                 />
-              )}
-              {!user.profilePic && (
-                <div className="user-default-profile-pic" key={user.id}>
-                  {user.firstName.charAt(0).toUpperCase() +
-                    user.lastName.charAt(0).toUpperCase()}
+              ) : (
+                <div className="user-default-avatar">
+                  {user.firstName.charAt(0).toUpperCase()}
+                  {user.lastName.charAt(0).toUpperCase()}
                 </div>
               )}
+
               <div className="filter-user-details">
                 <div className="user-display-name">
-                  {user.firstName + " " + user.lastName}
+                  {user.firstName} {user.lastName}
                 </div>
+
                 <div className="user-display-email">{user.email}</div>
-                {!allChats.find((chat) =>
-                  chat.members.map((m) => m.id).includes(user.id),
-                ) && (
-                  <div
-                    className="user-start-chat"
-                    onClick={() => startNewChat(user.id)}
-                  >
-                    <button className="user-start-chat-btn">Start Chat</button>
+
+                {!hasExistingChat && (
+                  <div className="user-start-chat">
+                    <button
+                      type="button"
+                      className="user-start-chat-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        startNewChat(user.id);
+                      }}
+                    >
+                      Start Chat
+                    </button>
                   </div>
                 )}
               </div>
